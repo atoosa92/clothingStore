@@ -1,0 +1,21 @@
+.filteringFrame{
+
+    border: #ddd 1px solid;
+    padding: 20px 20px;
+    margin-top: 8.8rem;
+}
+.lable{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}
+.lableSize{
+    color: #6d6a6a;
+    font-size: 17px;
+    padding: 10px 5px;
+    vertical-align: bottom;
+    width: 13px;
+    height: 13px;
+    padding: 20px 10px;
+    margin: auto;
+    
+}

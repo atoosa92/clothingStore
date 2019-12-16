@@ -1,0 +1,23 @@
+.btnToggle{
+    border: 0;
+    border-radius: 0;
+    background-size: 50%;
+    background-color: #1b1a20;
+    height: 60px;
+    width: 5rem;
+    cursor: pointer;
+    font-size: 2rem;
+    position: fixed;
+    top: 0;
+    right: 0;
+    
+}
+
+.btnToggle:hover{
+    color: #eabf27;
+    background-color: #1b1a20;
+}
+.btnToggle:focus{
+    background-color: #f2c637 !important;
+    box-shadow: none !important;
+}
