@@ -5,10 +5,32 @@ import Row from 'react-bootstrap/Row';
 import classes from './productFiltering.module.css';
 
 class productFiltering extends Component{
+   state={
+       sizeBox:[]
+   }
+
+  sizeHandeler = (id,isChecked)=>{
+
+
+      var newArray = [ ...this.state.sizeBox.filter(item=> item!==id) ];
+      if(isChecked){
+          newArray.push(id);
+      } 
+      this.setState({
+          sizeBox : newArray
+      },()=>{
+          this.props.onFilterChanged(newArray);
+      });
+
+   
+    
+  }
+
 
     render(){
         return(
             <>
+            
            { console.log('okkkkk',this.props.sizes) }
             <Form className={classes.filteringFrame}>
 
@@ -21,9 +43,10 @@ class productFiltering extends Component{
                             <Col sm>
                                {this.props.sizes.map((type) => (
                                 <Form.Check 
-                                key={type.id}
-                                label={type.val}
+                                key={type._id}
+                                label={type.sizes}
                                 className={classes.lableSize}
+                                onClick={(event)=>{this.sizeHandeler(type._id,event.target.checked)}}
                                 />
                                ))}
                             </Col>

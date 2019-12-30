@@ -1,16 +1,17 @@
 import axios from 'axios';
-import mockAdapter from 'axios-mock-adapter';
+import {baseUrl} from '../config/config';
+//import mockAdapter from 'axios-mock-adapter';
 
 
 
 const axiosInstance = axios.create({
-    baseURL:'/api'
+    baseURL:baseUrl
 });
 
 
-const mock = new mockAdapter(axiosInstance,{delayResponse:200});
+//const mock = new mockAdapter(axiosInstance,{delayResponse:200});
 
-mock.onGet("/api/products").reply(200, {
+/* mock.onGet("/api/products").reply(200, {
     message: "",
     data: {
       products: [
@@ -67,8 +68,10 @@ mock.onGet("/api/products").reply(200, {
 
     }
   });
+*/
 
-  mock.onGet("/api/sizes").reply(200, {
+/*
+mock.onGet("/api/sizes").reply(200, {
     message: "",
     data: {
      
@@ -102,5 +105,5 @@ mock.onGet("/api/products").reply(200, {
 
     }
   });
-
+*/
   export default axiosInstance;

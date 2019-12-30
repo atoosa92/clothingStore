@@ -3,12 +3,18 @@ import * as actionType from './actionType';
 
 
 
-const initialState=[]
+const initialState={
+    products:[],
+    productCount:0
+}
 
 const reducer = ( state = initialState, action ) => {
     switch(action.type){
         case actionType.listOfProducts:
-            return [ ...action.products ];
+            return {
+                products:[ ...action.products],
+                productCount:action.productCount
+            } ;
 
         default:
             return state;    

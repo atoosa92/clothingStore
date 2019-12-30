@@ -16,7 +16,7 @@ class heading extends Component{
                 
                             <Row>
                                 <Col> 
-                                <Form.Label style={{float:'left'}}>16 product(s) founds</Form.Label>
+                                <Form.Label style={{float:'left'}}>{this.props.totalProducts} product(s) founds</Form.Label>
                                 </Col>
                                 <Col>
                                     <Dropdown> 

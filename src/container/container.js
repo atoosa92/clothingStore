@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Products from '../components/products/products';
 import Container from 'react-bootstrap/Container';
 import * as ProductListActions from '../components/store/action';
+import {baseUrl} from '../config/config';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Heading from '../components/heading/heading';
@@ -17,7 +18,8 @@ class ProductBuilder extends Component {
 
     state = {
 
-        open:false
+        open:false,
+        newSizes:[]
     }
 
     componentDidMount(){
@@ -29,10 +31,11 @@ class ProductBuilder extends Component {
     SlidDrawerIsOpen=()=>{
         this.setState({open:!this.state.open});
     }
-
+    
 
     render() {
-        
+        console.log("products in container ",this.props.products);
+    
         return (
             <>
             <SlidDrawer active={this.state.open} onClose={this.SlidDrawerIsOpen}/>
@@ -43,18 +46,18 @@ class ProductBuilder extends Component {
                 <Row>
                     <Col xs={6} md={2}>
                          
-                          <ProductFiltering sizes={this.props.sizes}/>
+                          <ProductFiltering onFilterChanged={(sizeList)=>{this.props.onInitProducts(sizeList)}} sizes={this.props.sizes} />
                     </Col>
                 
                     <Col xs={12} md={10}> 
                          
                            <Row>
-                           <Heading/>
+                           <Heading totalProducts={this.props.productCount}/>
                            {this.props.products.map(item=>(
                                             <Products
-                                            key={item.id}
-                                            idPro={item.id}
-                                            imgPro={item.img}
+                                            key={item._id}
+                                            idPro={item._id}
+                                            imgPro={baseUrl+item.img}
                                             titlePro={item.title}
                                             pricePro={item.price}
                                             
@@ -78,14 +81,16 @@ class ProductBuilder extends Component {
 
 const mapStateToProps = (state)=>{
     return{
-        products:state.products,
+        products:state.products.products,
+        productCount:state.products.productCount,
         sizes:state.sizes
+        
     };
 }
 
 const mapDispatchToProps = (dispatch)=>{
     return{
-        onInitProducts:()=>dispatch(ProductListActions.loadProducts()),
+        onInitProducts:(sizeList)=>dispatch(ProductListActions.loadProducts(sizeList)),
         onInitSizes:()=>dispatch(ProductListActions.loadSizes())
     };
 }

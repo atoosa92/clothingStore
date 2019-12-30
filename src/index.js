@@ -35,7 +35,10 @@ const store = createStore(rootReducer,composeEnhancers(applyMiddleware(logger,th
 
 const app=(
     <Provider store={store}>
-        <App  />
+        
+             <App/>
+        
+        
     </Provider>
     );
 

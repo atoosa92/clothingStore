@@ -4,10 +4,11 @@ import * as actionType from '../store/actionType';
 
 
 
-export const loadProductSuccess =(products)=>{
+export const loadProductSuccess =(results)=>{
     return{
         type:actionType.listOfProducts,
-        products:products
+        products:results.products,
+        productCount:results.productCount
     }
  
 }
@@ -20,16 +21,21 @@ export const loadSizesSuccess =(sizes) =>{
 }
 
 
-export const loadProducts =()=>{
-    
+export const loadProducts =(sizeFilter=[])=>{
     return dispatch=>{
-        api.get('products')
+        let filter="";
+        
+        for(let i=0;i<sizeFilter.length;i++){
+            filter+="sizeFilter="+sizeFilter[i]+"&";
+        }
+        api.get('product?'+filter)
         .then(response=>{
-            console.log("products loaded", response);
-            dispatch(loadProductSuccess(response.data.data.products));
+            dispatch(loadProductSuccess(response.data));
+        
+            console.log('ohhhhhhh',response.data);
         }).catch(error=>{
             
-            console.log(error);
+            console.log("------err",JSON.stringify(error));
         
         })
     }
@@ -40,10 +46,10 @@ export const loadProducts =()=>{
 
 export const loadSizes = ()=>{
     return dispatch=>{
-        api.get('sizes')
+        api.get('size')
         .then(response=>{
             console.log('sizes loaded',response);
-            dispatch(loadSizesSuccess(response.data.data.sizes));
+            dispatch(loadSizesSuccess(response.data));
         }).catch(error=>{
             console.log(error);
         })
