@@ -22,7 +22,6 @@ class productFiltering extends Component{
           this.props.onFilterChanged(newArray);
       });
 
-   
     
   }
 

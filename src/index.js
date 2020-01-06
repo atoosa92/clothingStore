@@ -4,6 +4,7 @@ import {createStore,applyMiddleware,compose,combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import productReducer from './components/store/productReducer';
 import sizeReducer from './components/store/sizeReducer';
+import selectedItems from './components/store/selectedItems';
 import thunk from 'redux-thunk';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
@@ -12,7 +13,8 @@ import * as serviceWorker from './serviceWorker';
 
 const rootReducer = combineReducers({
     products:productReducer,
-    sizes:sizeReducer
+    sizes:sizeReducer,
+    items:selectedItems
     
   });
 

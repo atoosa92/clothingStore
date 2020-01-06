@@ -21,6 +21,16 @@ export const loadSizesSuccess =(sizes) =>{
 }
 
 
+export const getListOfSelectedItemsSuccess = (items)=>{
+    return{
+        type:actionType.listOfSelectedItems,
+        items:items
+    };
+         
+          
+}
+
+
 export const loadProducts =(sizeFilter=[])=>{
     return dispatch=>{
         let filter="";
@@ -52,6 +62,35 @@ export const loadSizes = ()=>{
             dispatch(loadSizesSuccess(response.data));
         }).catch(error=>{
             console.log(error);
+        })                                                                                                                                                                                                                                                                                                       
+                   
+    }
+}
+
+
+export const postListOfSelectedItems = (id)=>{
+    console.log("idddddddddddddddd",{id});                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+     return dispatch=>{
+        api.post('shoppingCart',{id})
+        .then(response=>{
+            console.log('items loaded',response.data);
+            dispatch(getListOfSelectedItemsSuccess(response.data));
+        }).catch(err=>{
+            console.log(err);
         })
+     }
+}
+
+
+export const listOfSelectedItems = ()=>{
+    return dispatch =>{
+        api.get('items')
+        .then(response =>{
+            dispatch(getListOfSelectedItemsSuccess(response.data));
+            console.log('itemsssssssss',response.data);
+        }).catch(err=>{
+            console.log(err);
+        })
+        
     }
 }

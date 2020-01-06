@@ -15,6 +15,7 @@ const Products=(props)=>
                     img={props.imgPro}
                     title={props.titlePro}
                     price={props.pricePro}
+                    selectedItem={props.clickedItem}
                     
                     />
              </Col>

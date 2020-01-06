@@ -12,7 +12,7 @@ const reducer = ( state = initialState, action ) => {
     switch(action.type){
         case actionType.listOfProducts:
             return {
-                products:[ ...action.products],
+                products:[ ...action.products ],
                 productCount:action.productCount
             } ;
 

@@ -13,7 +13,6 @@ import SlidDrawer from '../components/slidDrawer/slideDrawer';
 
 
 
-
 class ProductBuilder extends Component {
 
     state = {
@@ -26,18 +25,23 @@ class ProductBuilder extends Component {
         console.log("didmount----------->",this.props);
         this.props.onInitProducts();
         this.props.onInitSizes();
+        this.props.onListOfSelectedItems();
+        
     }
 
     SlidDrawerIsOpen=()=>{
         this.setState({open:!this.state.open});
     }
     
-
+    selectedProduct=(id)=>{
+        this.props.onSelectedProduct(id);
+    }
     render() {
         console.log("products in container ",this.props.products);
-    
+         
         return (
             <>
+           <p>{console.log('newwwwItem',this.props.items)}</p>
             <SlidDrawer active={this.state.open} onClose={this.SlidDrawerIsOpen}/>
             <Container>
                 <Row>
@@ -60,7 +64,7 @@ class ProductBuilder extends Component {
                                             imgPro={baseUrl+item.img}
                                             titlePro={item.title}
                                             pricePro={item.price}
-                                            
+                                            clickedItem={this.selectedProduct}
                                             />
                                         ))}
                                         
@@ -83,7 +87,9 @@ const mapStateToProps = (state)=>{
     return{
         products:state.products.products,
         productCount:state.products.productCount,
-        sizes:state.sizes
+        sizes:state.sizes,
+        items:state.items
+        
         
     };
 }
@@ -91,7 +97,9 @@ const mapStateToProps = (state)=>{
 const mapDispatchToProps = (dispatch)=>{
     return{
         onInitProducts:(sizeList)=>dispatch(ProductListActions.loadProducts(sizeList)),
-        onInitSizes:()=>dispatch(ProductListActions.loadSizes())
+        onInitSizes:()=>dispatch(ProductListActions.loadSizes()),
+        onSelectedProduct:(id)=>dispatch(ProductListActions.postListOfSelectedItems(id)),
+        onListOfSelectedItems:()=>dispatch(ProductListActions.listOfSelectedItems())
     };
 }
 
