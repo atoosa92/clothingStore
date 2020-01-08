@@ -17,8 +17,8 @@ class ProductBuilder extends Component {
 
     state = {
 
-        open:false,
-        newSizes:[]
+        open:false
+        
     }
 
     componentDidMount(){
@@ -38,11 +38,11 @@ class ProductBuilder extends Component {
     }
     render() {
         console.log("products in container ",this.props.products);
-         
+         const itemsss=this.props.items;
         return (
             <>
-           <p>{console.log('newwwwItem',this.props.items)}</p>
-            <SlidDrawer active={this.state.open} onClose={this.SlidDrawerIsOpen}/>
+            <p>{console.log('finallllllly',itemsss)}</p>
+            <SlidDrawer active={this.state.open} onClose={this.SlidDrawerIsOpen} listOfItems={this.props.items}/>
             <Container>
                 <Row>
                    <ToggleButton  clicked={this.SlidDrawerIsOpen} />

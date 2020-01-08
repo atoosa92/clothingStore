@@ -74,7 +74,7 @@ export const postListOfSelectedItems = (id)=>{
         api.post('shoppingCart',{id})
         .then(response=>{
             console.log('items loaded',response.data);
-            dispatch(getListOfSelectedItemsSuccess(response.data));
+            dispatch(listOfSelectedItems());
         }).catch(err=>{
             console.log(err);
         })
@@ -93,4 +93,16 @@ export const listOfSelectedItems = ()=>{
         })
         
     }
+}
+
+export const updateQuantity =(quantity,id)=>{
+     return dispatch=>{
+         api.patch(`updateQuantity/${id}`,{quantity})
+         .then(response=>{
+             dispatch(listOfSelectedItems);
+             console.log('newQuantity is sent',response.data);
+         }).catch(err=>{
+             console.log(err);
+         })
+     }
 }

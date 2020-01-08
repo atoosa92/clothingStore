@@ -1,12 +1,50 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Purchase from '../purchasedItems/purchasedItems';
 import CheckoutHeader from '../purchasedItems/checkoutHeader';
 import Button from 'react-bootstrap/Button';
 import classes from './slidDrawer.module.css';
 
 
-class SlidDrawer extends Component{
-    state = {
+const SlidDrawer =(props)=>{
+
+        const selectedItemsToPurchase = props.listOfItems.map(item=>{
+             return (
+                 <Purchase
+                 key={item._id} 
+                 id={item._id}
+                 img={item.img}
+                 title={item.title}
+                 price={item.price}
+                 quantity={item.quantity}
+ 
+                 />
+             )
+        });
+         return(
+         
+             <div className={[classes.slidDrawer,props.active ? classes.slidDrawerOpen : null ].join(" ")}>
+                 <Button className={classes.closeForm} onClick={props.onClose} >
+                     <i className="fas fa-times"></i>
+                 </Button>
+                 <div className={classes.cartShopping}>
+                     <CheckoutHeader/>
+                     <div className={classes.shappingItemsContainer}>
+                         {selectedItemsToPurchase}
+                         
+                         
+                     </div>
+                     
+                     
+                     
+                 </div>
+                 
+             </div>
+                     
+         );
+     }
+
+
+   /* state = {
 
         selectedItems:[
             {  
@@ -30,43 +68,9 @@ class SlidDrawer extends Component{
             
         ]
     }
-    render(){
+    */
+   
 
-       const selectedItemsToPurchase = this.state.selectedItems.map(item=>{
-            return (
-                <Purchase key={item.id} 
-                img={item.imgItem}
-                title={item.titleItem}
-                price={item.priceItem}
-                size={item.sizeItem}
-                quantity={item.quantityItem}
-
-                />
-            )
-       });
-        return(
-        
-            <div className={[classes.slidDrawer,this.props.active ? classes.slidDrawerOpen : null ].join(" ")}>
-                <Button className={classes.closeForm} onClick={this.props.onClose} >
-                    <i className="fas fa-times"></i>
-                </Button>
-                <div className={classes.cartShopping}>
-                    <CheckoutHeader/>
-                    <div className={classes.shappingItemsContainer}>
-                        {selectedItemsToPurchase}
-                        
-                        
-                    </div>
-                    
-                    
-                    
-                </div>
-                
-            </div>
-                    
-        );
-    }
-}
 
 
 
