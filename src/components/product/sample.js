@@ -16,7 +16,7 @@ const Sample =(props)=>{
                     <Card.Title className={styles.title}>{props.title}</Card.Title>
                     <hr className={styles.lineSeprator}/>
                     <Card.Text> 
-                    <span style={{fontWeight:'bold',fontSize:'2rem'}}>{props.price}</span>
+                    <span style={{fontWeight:'bold',fontSize:'2rem'}}>${props.price}</span>
                     </Card.Text>
                     <Button className={styles.btn} onClick={()=>props.selectedItem(props.id)}>Add to cart</Button>
                 </Card.Body>

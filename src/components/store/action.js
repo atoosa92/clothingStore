@@ -99,8 +99,20 @@ export const updateQuantity =(quantity,id)=>{
      return dispatch=>{
          api.patch(`updateQuantity/${id}`,{quantity})
          .then(response=>{
-             dispatch(listOfSelectedItems);
+             dispatch(listOfSelectedItems());
              console.log('newQuantity is sent',response.data);
+         }).catch(err=>{
+             console.log(err);
+         })
+     }
+}
+
+export const DeleteItemInList =(id)=>{
+     return dispatch=>{
+         api.delete(`deleteItem/${id}`)
+         .then(response=>{
+                dispatch(listOfSelectedItems());
+                console.log('delete response',response.data)
          }).catch(err=>{
              console.log(err);
          })

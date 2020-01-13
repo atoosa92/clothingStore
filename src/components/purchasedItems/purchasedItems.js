@@ -11,15 +11,12 @@ class Purchase extends Component{
             newQuantity:1
         }
 
-        componentDidUpdate(){
-        }
-
         AddQuantity =()=>{ 
 
         let quan = this.state.newQuantity;
             quan +=1;
             this.setState({newQuantity:quan},()=>{
-                this.props.onUpdateQuantity(this.state.newQuantity,this.props.id);
+            this.props.onUpdateQuantity(this.state.newQuantity,this.props.id);
                 
             });     
             
@@ -31,7 +28,8 @@ class Purchase extends Component{
             this.setState({newQuantity:quan});
             this.props.onUpdateQuantity(this.state.newQuantity,this.props.id);
         }
-    
+        
+     
         render(){
         
 
@@ -41,7 +39,7 @@ class Purchase extends Component{
                     
                     <div className={classes.purchaseForm}>
                             <div style={{float:'right',marginRight:'20px'}}>
-                                <button className={classes.btnDelete}> 
+                                <button className={classes.btnDelete} onClick={()=>this.props.onDeleteItem(this.props.id)}> 
                                         <i className="fas fa-times"></i>
                                 </button>
                             </div>
@@ -96,7 +94,8 @@ class Purchase extends Component{
 
 const mapDispatchToProps = (dispatch)=>{
     return{
-        onUpdateQuantity :(quantity,id)=>dispatch(ProductListActions.updateQuantity(quantity,id))
+        onUpdateQuantity :(quantity,id)=>dispatch(ProductListActions.updateQuantity(quantity,id)),
+        onDeleteItem :(id)=>dispatch(ProductListActions.DeleteItemInList(id))
     }
 }
 
